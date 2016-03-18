@@ -1,0 +1,32 @@
+<ul>
+	<li class='cNoBullet' ng-repeat='vacation in vacations'>
+	<span class='cBold'>Destination:</span> {{ vacation.destination }}
+	<span class='cBold'>City:</span> {{ vacation.city }}
+	<span class='cBold'>State:</span> {{ vacation.state }}
+	<span class='cBold'>Zip:</span> {{ vacation.zip }}
+	<span class='cBold'>Country:</span> {{ vacation.country }}
+    <button ng-click='showVacationToModify(vacation)'>Edit</button>
+    <button ng-click='deleteVacation(vacation)'>Delete</button>
+	</li>
+</ul>
+<button ng-click='showAddVacationView()'>Add Destination</button>
+
+<div ng-show='showAddVacation'>
+Destination: <input type="text" ng-model='newVacation.destination'>
+City: <input type="text" ng-model='newVacation.city'>
+State: <input type="text" ng-model='newVacation.state'>
+Zip: <input type="text" ng-model='newVacation.zip'>
+Country: <input type="text" ng-model='newVacation.country'>
+<button ng-disabled='fieldMissing2' ng-click='addVacation()'>Save</button>
+<button   ng-click='addVacationCancel()'>Cancel</button>
+</div>
+
+<div ng-show='showEditVacation'>
+Destination: <input type="text" ng-model='editingVacation.destination'>
+City: <input type="text" ng-model='editingVacation.city'>
+State: <input type="text" ng-model='editingVacation.state'>
+Zip: <input type="text" ng-model='editingVacation.zip'>
+Country: <input type="text" ng-model='editingVacation.country'>
+<button  ng-click='updateVacationDone(editingVacation)'>Update</button>
+<button ng-click='updateVacationCancel()'>Cancel</button>
+</div>
