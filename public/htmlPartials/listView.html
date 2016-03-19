@@ -11,6 +11,7 @@
     <button ng-click='deleteVacation(vacation)'>Delete</button>
 		<span ng-show='notesVisible' style='  margin-top:15px'><br>NOTES:
 			<span ng-repeat='note in notes'>notes = {{note}}</span>
+			<button ng-click='showAddNote(note)'>Add note</button>
 			<button ng-click='showNotesToModify(note)'>Edit</button>
 			<button ng-click='removeNote(note)'>Remove</button>
 			<button ng-click='doneWithNote(note)'>Done</button>
