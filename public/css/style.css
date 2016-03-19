@@ -1,10 +1,9 @@
 
-
 body {
   background-image: url("../images/TheBeach.jpg");
   background-repeat:   no-repeat;
   background-size:     cover;
-  padding: 50px;
+
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 
   font-family: 'Shadows Into Light Two', cursive;
@@ -26,6 +25,10 @@ button:hover {
   background-color: orange;
 }
 
+input {
+  background-color:#f5f9fa;
+}
+
 li {
    background-color:rgba(255, 255, 255, 0.2);
 }
@@ -38,9 +41,9 @@ li {
   font-weight:bold;
 }
 
-h1 {
-	/*padding: 0 0px 100px 0px;	*/
-	/*margin-top: -20px;*/
+.cTitle  {
+	padding: 15px 0px 10px 0px;
+  font-size:2em;
   color: orange;
   text-align: center;
 }
@@ -51,6 +54,3 @@ h1 {
   line-height: 50px;
   font-size: 15px
 }
-
-
-  

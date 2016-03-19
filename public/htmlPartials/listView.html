@@ -1,10 +1,10 @@
 <ul>
 	<li class='cNoBullet' ng-repeat='vacation in vacations'>
-	<span class='cBold'>Destination:</span> {{ vacation.destination }}
-	<span class='cBold'>City:</span> {{ vacation.city }}
-	<span class='cBold'>State:</span> {{ vacation.state }}
-	<span class='cBold'>Zip:</span> {{ vacation.zip }}
-	<span class='cBold'>Country:</span> {{ vacation.country }}
+	<span class='cBold cMatching'>Destination:</span> {{ vacation.destination }}
+	<span class='cBold cMatching'>City:</span> {{ vacation.city }}
+	<span class='cBold cMatching'>State:</span> {{ vacation.state }}
+	<span class='cBold cMatching'>Zip:</span> {{ vacation.zip }}
+	<span class='cBold cMatching'>Country:</span> {{ vacation.country }}
     <button ng-click='showVacationToModify(vacation)'>Edit</button>
     <button ng-click='deleteVacation(vacation)'>Delete</button>
 	</li>
