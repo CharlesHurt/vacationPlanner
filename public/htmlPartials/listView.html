@@ -11,22 +11,28 @@
 </ul>
 <button ng-click='showAddVacationView()'>Add Destination</button>
 
-<div ng-show='showAddVacation'>
-Destination: <input type="text" ng-model='newVacation.destination'>
-City: <input type="text" ng-model='newVacation.city'>
-State: <input type="text" ng-model='newVacation.state'>
-Zip: <input type="text" ng-model='newVacation.zip'>
-Country: <input type="text" ng-model='newVacation.country'>
-<button ng-disabled='fieldMissing2' ng-click='addVacation()'>Save</button>
-<button   ng-click='addVacationCancel()'>Cancel</button>
-</div>
+<form name='addForm' ng-show='showAddVacation' novalidate>
+Destination: <input type="text" name='newDestination' ng-model='newVacation.destination'
+  ng-minlength='2' required>
+City: <input type="text" name='newCity' ng-model='newVacation.city'>
+State: <input type="text" name='newState' ng-model='newVacation.state' ng-maxlength='2'>
+Zip: <input type="number" name='newZip' ng-model='newVacation.zip' ng-maxlength='5'>
+Country: <input type="text" name='newCountry' ng-model='newVacation.country'><br>
+<button type="submit" ng-disabled="addForm.$invalid"  ng-click='addVacation()'>Save</button>
+<button   ng-click='addVacationCancel()'>Cancel</button><br>
+<span ng-show="addForm.newDestination.$touched && addForm.newDestination.$invalid">
+	The destination field is required to have two characters minimum.</span>
+</form>
 
-<div ng-show='showEditVacation'>
-Destination: <input type="text" ng-model='editingVacation.destination'>
-City: <input type="text" ng-model='editingVacation.city'>
-State: <input type="text" ng-model='editingVacation.state'>
-Zip: <input type="text" ng-model='editingVacation.zip'>
-Country: <input type="text" ng-model='editingVacation.country'>
-<button  ng-click='updateVacationDone(editingVacation)'>Update</button>
-<button ng-click='updateVacationCancel()'>Cancel</button>
-</div>
+<form name='editForm' ng-show='showEditVacation' novalidate>
+  Destination: <input type="text" name='editedDestination'
+ng-model='editingVacation.destination' ng-minlength='2' required>
+City: <input type="text" name='editedCity' ng-model='editingVacation.city'>
+State: <input type="text" name='editedState' ng-model='editingVacation.state' ng-maxlength='2'>
+Zip: <input type="number" name='editedZip' ng-model='editingVacation.zip' ng-maxlength='5'>
+Country: <input type="text" name='editedCountry' ng-model='editingVacation.country'><br>
+<button  ng-enabled='editForm.$valid' ng-click='updateVacationDone(editingVacation)'>Update</button>
+<button ng-click='updateVacationCancel()'>Cancel</button><br>
+<span ng-show="addForm.editedDestination.$touched && addForm.editedDestination.$invalid">
+	The destination field is required to have two characters minimum.</span>
+</form>

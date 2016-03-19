@@ -80,25 +80,30 @@ router.put('/:id', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
-	var q = "DELETE FROM notes WHERE Vacations_id=" + req.params.id
-  db.query(q, function(err, rows, fields) {
-		if (err) {
-			res.status(400);
-			res.send(err);
-		} else {
-			res.send(rows);
-		}
-	});
 
-	var q = "DELETE FROM vacations WHERE id=" + req.params.id
+	var q = "DELETE FROM notes WHERE Vacations_id=" + req.params.id
+  q = "select * from notes"
+	// Delete from detail table
   db.query(q, function(err, rows, fields) {
 		if (err) {
 			res.status(400);
 			res.send(err);
 		} else {
-			res.send(rows);
+
+			// Delete from master table
+			var q = "DELETE FROM vacations WHERE id=" + req.params.id
+		  db.query(q, function(err, rows, fields) {
+				if (err) {
+					res.status(400);
+					res.send(err);
+				} else {
+					res.send(rows);
+				}
+			});
 		}
-	});
+	})
+
+
 });
 
 module.exports = router;

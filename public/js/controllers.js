@@ -43,6 +43,9 @@ vacationApp.controller('vacationController', function($scope, $http, $state, $ro
   $scope.newVacation = {}
 
   $scope.showVacationToModify = (vacation) => {
+    $scope.editForm.$setPristine()
+    $scope.editForm.$setUntouched()
+
     $scope.editingVacation.destination = vacation.destination
     $scope.editingVacation.city = vacation.city
     $scope.editingVacation.state = vacation.state
@@ -63,6 +66,8 @@ vacationApp.controller('vacationController', function($scope, $http, $state, $ro
   }
 
   $scope.showAddVacationView = () => {
+    $scope.addForm.$setPristine()
+    $scope.addForm.$setUntouched()
     $scope.addVacation.destination = ''
     $scope.addVacation.city = ''
     $scope.addVacation.state = ''
@@ -79,6 +84,13 @@ vacationApp.controller('vacationController', function($scope, $http, $state, $ro
   }
 
   $scope.addVacation = function() {
+
+      console.log("&***** error w/ZIP", $scope.newVacation.zip)
+
+
+    if ($scope.newVacation.country ==='  ') {
+      console.log();
+    }
     $http({
       method: "POST",
       url: "/vacations",
@@ -93,7 +105,9 @@ vacationApp.controller('vacationController', function($scope, $http, $state, $ro
       $scope.vacations =  err.statusText
     })
   }
-
+/*add form validation
+destination 2chars min
+zip is a 5 digit # or nothing*/
   $scope.updateVacationDone = function(vacation) {
     $scope.editingVacation.destination = vacation.destination
     $scope.editingVacation.city = vacation.city
@@ -117,6 +131,7 @@ vacationApp.controller('vacationController', function($scope, $http, $state, $ro
   }
 
   $scope.deleteVacation = function(vacation) {
+    console.log('vaca id:', vacation.id);
      $http({
       method: "DELETE",
       url: "/vacations" + '/' + vacation.id
