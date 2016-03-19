@@ -2,7 +2,7 @@
 
 var mysql = require('mysql')
 // These should have been in a model file and this an API to MODEL
-var db = mysql.createConnection({
+var db = mysql.createConnection(process.env.JAWSDB_URL || {
   host: 'localhost',
   user: 'root',
   password: "newsqluser",
