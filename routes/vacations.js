@@ -35,7 +35,6 @@ router.post('/', function(req, res, next) {
 
 router.put('/:id', function(req, res, next) {
 	var columnName = ''
-  //console.log('fieldnames:' + req.body.category + '/' + req.body.question + '/' + req.body.answer)
 	if (req.body.destination) {
 		columnName += " destination='" + req.body.destination + "' "
 	}

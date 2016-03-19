@@ -9,10 +9,10 @@ vacationApp.config(function($stateProvider, $urlRouterProvider) {
   	templateUrl:"htmlPartials/listView.html",
     controller: "vacationController"
   })
-  .state('practiceState', {
-    url:'/practiceState',
-    templateUrl:"htmlPartials/practiceView.html",
-    controller: 'practiceController'
+  .state('detailsState', {
+    url:'/detailsState',
+    templateUrl:"htmlPartials/detailsView.html",
+    controller: 'detailsController'
   })
 
   $urlRouterProvider.otherwise('/')
@@ -24,19 +24,10 @@ vacationApp.service("sharingService", function() {
   }
 })
 
-vacationApp.controller('practiceController', function($scope, $http, $state, $rootScope) {
-  $scope.questionIndex = 0
-  $scope.answerVisible = false
+vacationApp.controller('detailsController', function($scope, $http, $state, $rootScope) {
 
-  $scope.showAnswer = function() {
-    $scope.answerVisible = true
-    $scope.questionHost = "This is a good question"
-  }
 
-  $scope.showNextQuestion = function() {
-    $scope.questionHost = "bla"
-    $scope.answerVisible = false
-  }
+
 })
 
 vacationApp.controller('appController', function($scope, $http, $state, $rootScope) {
@@ -51,26 +42,33 @@ vacationApp.controller('vacationController', function($scope, $http, $state, $ro
   $scope.editingVacation = {}
   $scope.newVacation = {}
 
-  $scope.showVacationToModify = (fc) => {
-    $scope.editingVacation.category = fc.category
-    $scope.editingVacation.question = fc.question
-    $scope.editingVacation.answer = fc.answer
-    $scope.editingVacation.id = fc.id
+  $scope.showVacationToModify = (vacation) => {
+    $scope.editingVacation.destination = vacation.destination
+    $scope.editingVacation.city = vacation.city
+    $scope.editingVacation.state = vacation.state
+    $scope.editingVacation.zip = vacation.zip
+    $scope.editingVacation.country = vacation.country
+    $scope.editingVacation.id = vacation.id
 
     $scope.showEditVacation = true
   }
 
   $scope.addVacationCancel = function() {
-    $scope.newVacation.category = ''
-    $scope.newVacation.question = ''
-    $scope.newVacation.answer = ''
+    $scope.newVacation.destination = ''
+    $scope.newVacation.city = ''
+    $scope.newVacation.state = ''
+    $scope.newVacation.zip = ''
+    $scope.newVacation.country = ''
     $scope.showAddVacation = false
   }
 
   $scope.showAddVacationView = () => {
-    $scope.addVacation.category = ''
-    $scope.addVacation.question = ''
-    $scope.addVacation.answer = ''
+    $scope.addVacation.destination = ''
+    $scope.addVacation.city = ''
+    $scope.addVacation.state = ''
+    $scope.addVacation.zip = ''
+    $scope.addVacation.country = ''
+
     $scope.showAddVacation = true
     $scope.showEditVacation = false
   }
@@ -96,14 +94,17 @@ vacationApp.controller('vacationController', function($scope, $http, $state, $ro
     })
   }
 
-  $scope.updateVacationDone = function(fc) {
-    $scope.editingVacation.category = fc.category
-    $scope.editingVacation.question = fc.question
-    $scope.editingVacation.answer = fc.answer
+  $scope.updateVacationDone = function(vacation) {
+    $scope.editingVacation.destination = vacation.destination
+    $scope.editingVacation.city = vacation.city
+    $scope.editingVacation.state = vacation.state
+    $scope.editingVacation.zip = vacation.zip
+    $scope.editingVacation.country = vacation.country
+
     $http({
       method: "PUT",
-      url: "/vacations/" + fc.id,
-      data:  $scope.editingVacation
+      url: "/vacations/" + vacation.id,
+      data:  $scope.editingVacation // TODO change this to vacation
     }).then(function(res) {
       //$scope.vacations = res.data
       $scope.getVacations()
@@ -115,14 +116,14 @@ vacationApp.controller('vacationController', function($scope, $http, $state, $ro
     $scope.showEditVacation = false
   }
 
-  $scope.deleteVacation = function(fc) {
+  $scope.deleteVacation = function(vacation) {
      $http({
       method: "DELETE",
-      url: "/vacations" + '/' + fc.id
+      url: "/vacations" + '/' + vacation.id
     }).then(function(res) {
       var toDelete
       for (var i in $scope.vacations) {
-        if ($scope.vacations[i].id === fc.id) {
+        if ($scope.vacations[i].id === vacation.id) {
           toDelete = i
         }
       }
@@ -147,7 +148,7 @@ vacationApp.controller('vacationController', function($scope, $http, $state, $ro
   $scope.getVacations() //initialize
 
   $scope.postVacation = function() {
-    console.log($scope.newVacation , ' is new fc')
+    console.log($scope.newVacation , ' is new vacation')
     $http({
       method: "POST",
       url: "/vacations",

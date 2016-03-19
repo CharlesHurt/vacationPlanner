@@ -52,45 +52,5 @@ h1 {
   font-size: 15px
 }
 
-#idShowAnswer {
-  position:absolute;
-  left:410px;
-  top:400px;
-  z-index:50;
-}
 
-#idNextQuestion {
-  position:absolute;
-  left:530px;
-  top:400px;
-  z-index:50;
-}
-
-#idCardFront {
-  position:absolute;
-  left:30px;
-  top:100px;
-  z-index:30;
-}
-
-#idCardBack {
-  position:absolute;
-  left:530px;
-  top:100px;
-  z-index:30;
-}
-
-
-#idCardFrontTextHost {
-  position:absolute;
-  left:50px;
-  top:110px;
-  z-index:40;
-}
-
-#idCardBackTextHost {
-  position:absolute;
-  left:550px;
-  top:110px;
-  z-index:40;
-}
+  
