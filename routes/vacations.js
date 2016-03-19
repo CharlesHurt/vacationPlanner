@@ -5,7 +5,6 @@ const HTML_FILE = path.join(__dirname, 'index.html');
 
 var db = require('../config/db');
 
-
 router.get('/', function(req, res, next) {
 	db.query('SELECT * FROM vacations', function(err, rows, fields) {
 		if (err) {

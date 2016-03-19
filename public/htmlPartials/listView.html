@@ -5,8 +5,16 @@
 	<span class='cBold cMatching'>State:</span> {{ vacation.state }}
 	<span class='cBold cMatching'>Zip:</span> {{ vacation.zip }}
 	<span class='cBold cMatching'>Country:</span> {{ vacation.country }}
+
+	  <button ng-click='showNotes(vacation)'>See Notes</button>
     <button ng-click='showVacationToModify(vacation)'>Edit</button>
     <button ng-click='deleteVacation(vacation)'>Delete</button>
+		<span ng-show='notesVisible' style='  margin-top:15px'><br>NOTES:
+			<span ng-repeat='note in notes'>notes = {{note}}</span>
+			<button ng-click='showNotesToModify(note)'>Edit</button>
+			<button ng-click='removeNote(note)'>Remove</button>
+			<button ng-click='doneWithNote(note)'>Done</button>
+		</span>
 	</li>
 </ul>
 <button ng-click='showAddVacationView()'>Add Destination</button>
@@ -20,7 +28,7 @@ Zip: <input type="number" name='newZip' ng-model='newVacation.zip' ng-maxlength=
 Country: <input type="text" name='newCountry' ng-model='newVacation.country'><br>
 <button type="submit" ng-disabled="addForm.$invalid"  ng-click='addVacation()'>Save</button>
 <button   ng-click='addVacationCancel()'>Cancel</button><br>
-<span ng-show="addForm.newDestination.$touched && addForm.newDestination.$invalid">
+<span class='cMatching' ng-show="addForm.newDestination.$touched && addForm.newDestination.$invalid">
 	The destination field is required to have two characters minimum.</span>
 </form>
 
@@ -33,6 +41,6 @@ Zip: <input type="number" name='editedZip' ng-model='editingVacation.zip' ng-max
 Country: <input type="text" name='editedCountry' ng-model='editingVacation.country'><br>
 <button  ng-enabled='editForm.$valid' ng-click='updateVacationDone(editingVacation)'>Update</button>
 <button ng-click='updateVacationCancel()'>Cancel</button><br>
-<span ng-show="addForm.editedDestination.$touched && addForm.editedDestination.$invalid">
+<span class='cMatching' ng-show="addForm.editedDestination.$touched && addForm.editedDestination.$invalid">
 	The destination field is required to have two characters minimum.</span>
 </form>

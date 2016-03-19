@@ -37,6 +37,24 @@ vacationApp.controller('appController', function($scope, $http, $state, $rootSco
 })
 
 vacationApp.controller('vacationController', function($scope, $http, $state, $rootScope) {
+  $scope.notesVisible = false
+  $scope.showNotes = function(vacation) {
+    $scope.notesVisible = !$scope.notesVisible
+  }
+
+  $scope.showNotesToModify = function(note) {
+
+  }
+
+  $scope.removeNote  = function(note) {
+
+  }
+
+  $scope.doneWithNote  = function(note) {
+    $scope.notesVisible = false
+  }
+
+
   $scope.showAddVacation = false
   $scope.showEditVacation = false
   $scope.editingVacation = {}

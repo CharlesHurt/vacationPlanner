@@ -30,27 +30,32 @@ input {
 }
 
 li {
-   background-color:rgba(255, 255, 255, 0.2);
+  background-color:rgba(255, 255, 255, 0.2);
 }
 
 .cNoBullet {
   list-style:none;
 }
 
+.cMatching {
+  background-color:#f5f9fa;
+}
+
 .cBold {
   font-weight:bold;
 }
 
-.cTitle  {
+.cTitle {
+  text-align: center;
 	padding: 15px 0px 10px 0px;
   font-size:2em;
   color: orange;
-  text-align: center;
+
 }
 
-.vacations {
+.cVacations {
   text-align: center;
-  padding: 100px 0 100px 0;
-  line-height: 50px;
+  padding: 10px 0 10px 0;
+  line-height: 30px;
   font-size: 15px
 }
